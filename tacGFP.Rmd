@@ -19,6 +19,12 @@ h <- read_excel("~/Documents/Experiments/8.22.25 tacGFPEcoli.xlsx",
     sheet = "OD")
 i <- read_excel("~/Documents/Experiments/8.22.25 tacGFPEcoli.xlsx", 
     sheet = "Lum OD")
+l <- read_excel("~/Documents/Experiments/9.4.25 Promoters.xlsx", 
+    sheet = "Lum")
+m <- read_excel("~/Documents/Experiments/9.4.25 Promoters.xlsx", 
+    sheet = "OD")
+n <- read_excel("~/Documents/Experiments/9.4.25 Promoters.xlsx", 
+    sheet = "Lum OD")
 
 ```
 
@@ -40,14 +46,12 @@ p1 <- ggplot(g, aes(x=Hours)) +
   geom_point(aes(y = A3, color="GFP")) +
   geom_point(aes(y = C3, color="GFP")) +
   geom_point(aes(y = E3, color="GFP"))+
-   labs(title="IPTG Lum",
+   labs(title=" tac Lum",
         x ="Time (hours)", y = "Luminescence (AU)",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
 #ggsave("GFP Lum.png")
-
-colors <- c("GFP" = "seagreen", "Blank" = "gray")
 
 p1 <- ggplot(h, aes(x=Hours)) + 
   geom_line(aes(y = A1, color="GFP"),linewidth=1) +
@@ -65,7 +69,7 @@ p1 <- ggplot(h, aes(x=Hours)) +
   geom_point(aes(y = C3, color="GFP")) +
   geom_point(aes(y = E3, color="GFP"))+
   scale_y_log10()+
-   labs(title="OD",
+   labs(title="tac OD",
         x ="Time (hours)", y = "Log OD",
          color = "Legend") +
     scale_color_manual(values = colors)
@@ -74,6 +78,7 @@ p1
 ```
 
 ```{r}
+colors <- c("GFP" = "seagreen", "Blank" = "gray")
 r<- ggplot()+ 
   geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="GFP"))+
  geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="GFP"))+
@@ -82,7 +87,7 @@ r<- ggplot()+
    geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="GFP"))+
  geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="GFP"))+
   geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="GFP"))+
-labs(title="IPTG OVL",
+labs(title="tac OVL",
         x ="Optical Density", y = "Luminescence (AU)", color = "Legend") +
     scale_color_manual(values = colors)
 r
@@ -92,6 +97,7 @@ r
 ```
 
 ```{r}
+colors <- c("GFP" = "seagreen", "Blank" = "gray")
 p1 <- ggplot(i, aes(x=Hours)) + 
   geom_line(aes(y = A1, color="GFP"),linewidth=1) +
   geom_line(aes(y = C1, color="GFP"),linewidth=1) +
@@ -107,10 +113,121 @@ p1 <- ggplot(i, aes(x=Hours)) +
   geom_point(aes(y = A3, color="GFP")) +
   geom_point(aes(y = C3, color="GFP")) +
   geom_point(aes(y = E3, color="GFP"))+
-   labs(title="Lum/OD",
+   labs(title="tac Lum/OD",
         x ="Time (hours)", y = "Lum/OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
 #ggsave("GFP Lum/OD.png")
+```
+
+```{r Lum2}
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
+
+p1 <- ggplot(l, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  #geom_line(aes(y = E1, color="102"),linewidth=1)+
+  #geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+   labs(title="Lum",
+        x ="Time (hours)", y = "Luminescence (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("GFP Lum.png")
+
+
+p1 <- ggplot(m, aes(x=Hours)) + 
+ geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  #geom_line(aes(y = E1, color="102"),linewidth=1)+
+  #geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  scale_y_log10()+
+   labs(title="OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("GFP OD.png")
+```
+
+```{r}
+
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = m$A1, y = l$A1), aes(x = x, y = y, color="102"))+
+ geom_point(data = data.frame(x = m$C1, y = l$C1), aes(x = x, y = y, color="102"))+
+  #geom_point(data = data.frame(x = m$E1, y = l$E1), aes(x = x, y = y, color="102"))+
+  #geom_point(data = data.frame(x = m$G1, y = l$G1), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = m$A3, y = l$A3), aes(x = x, y = y, color="104"))+
+ geom_point(data = data.frame(x = m$C3, y = l$C3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = m$E3, y = l$E3), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = m$G3, y = l$G3), aes(x = x, y = y, color="104"))+ 
+  geom_point(data = data.frame(x = m$A5, y = l$A5), aes(x = x, y = y, color="108"))+
+ geom_point(data = data.frame(x = m$C5, y = l$C5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = m$E5, y = l$E5), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = m$G5, y = l$G5), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = m$A7, y = l$A7), aes(x = x, y = y, color="115"))+
+ geom_point(data = data.frame(x = m$C7, y = l$C7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = m$E7, y = l$E7), aes(x = x, y = y, color="115"))+
+   geom_point(data = data.frame(x = m$G7, y = l$G7), aes(x = x, y = y, color="115"))+
+labs(title="IPTG OVL",
+        x ="Optical Density", y = "Luminescence (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("GFP OVL.png")
+
+```
+
+```{r}
+p1 <- ggplot(n, aes(x=Hours)) + 
+ geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  #geom_line(aes(y = E1, color="102"),linewidth=1)+
+  #geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  scale_y_log10()+
+   labs(title="OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("GFP OD.png")
 ```
