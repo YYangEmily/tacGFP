@@ -124,7 +124,7 @@ p1 <- ggplot(i, aes(x=Hours)) +
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("tac Lum/OD.png")
+#ggsave("tac LumOD.png")
 ```
 
 ```{r 102 Lum}
@@ -234,8 +234,9 @@ p1 <- ggplot(n, aes(x=Hours)) +
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("102 OD.png")
+#ggsave("102 LumOD.png")
 ```
+
 ```{r 110 Lum}
 colors <- c("110" = "cyan", "118" ="salmon")
 
@@ -346,5 +347,5 @@ p1 <- ggplot(q, aes(x=Hours)) +
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("110 OD.png")
+#ggsave("110 LumOD.png")
 ```
