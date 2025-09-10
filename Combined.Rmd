@@ -1,0 +1,120 @@
+---
+title: "Combined"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+g <- read_excel("~/Documents/Experiments/9.10.25 Promoter GFP.xlsx", 
+    sheet = "Lum")
+h <- read_excel("~/Documents/Experiments/9.10.25 Promoter GFP.xlsx", 
+    sheet = "OD")
+i <- read_excel("~/Documents/Experiments/9.10.25 Promoter GFP.xlsx", 
+    sheet = "Lum OD")
+```
+
+```{r}
+
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+p1 <- ggplot(g, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="tac"),linewidth=1) +
+  geom_line(aes(y = A2, color="tac"),linewidth=1) +
+  geom_line(aes(y = B1, color="102"),linewidth=1) +
+  geom_line(aes(y = B2, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = C2, color="104"),linewidth=1) +
+  geom_line(aes(y = D1, color="108"),linewidth=1) +
+  geom_line(aes(y = D2, color="108"),linewidth=1) +
+  geom_line(aes(y = E1, color="115"),linewidth=1) +
+  geom_line(aes(y = E2, color="115"),linewidth=1) +
+  geom_line(aes(y = F1, color="110"),linewidth=1) +
+  geom_line(aes(y = F2, color="110"),linewidth=1) +
+  geom_line(aes(y = G1, color="118"),linewidth=1) +
+  geom_line(aes(y = G2, color="118"),linewidth=1) +
+   labs(title=" All Lum",
+        x ="Time (hours)", y = "Luminescence (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("All Lum.png")
+
+p1 <- ggplot(h, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="tac"),linewidth=1) +
+  geom_line(aes(y = A2, color="tac"),linewidth=1) +
+  geom_line(aes(y = B1, color="102"),linewidth=1) +
+  geom_line(aes(y = B2, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = C2, color="104"),linewidth=1) +
+  geom_line(aes(y = D1, color="108"),linewidth=1) +
+  geom_line(aes(y = D2, color="108"),linewidth=1) +
+  geom_line(aes(y = E1, color="115"),linewidth=1) +
+  geom_line(aes(y = E2, color="115"),linewidth=1) +
+  geom_line(aes(y = F1, color="110"),linewidth=1) +
+  geom_line(aes(y = F2, color="110"),linewidth=1) +
+  geom_line(aes(y = G1, color="118"),linewidth=1) +
+  geom_line(aes(y = G2, color="118"),linewidth=1) +
+  scale_y_log10()+
+   labs(title="tac OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("All OD.png")
+```
+
+```{r}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="tac"))+
+ geom_point(data = data.frame(x = h$A2, y = g$C2), aes(x = x, y = y, color="tac"))+
+   geom_point(data = data.frame(x = h$B1, y = g$B1), aes(x = x, y = y, color="102"))+
+ geom_point(data = data.frame(x = h$B2, y = g$B2), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="104"))+
+ geom_point(data = data.frame(x = h$C2, y = g$C2), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = h$D1, y = g$D1), aes(x = x, y = y, color="108"))+
+ geom_point(data = data.frame(x = h$D2, y = g$D2), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="115"))+
+ geom_point(data = data.frame(x = h$E2, y = g$E2), aes(x = x, y = y, color="115"))+
+   geom_point(data = data.frame(x = h$F1, y = g$F1), aes(x = x, y = y, color="110"))+
+ geom_point(data = data.frame(x = h$F2, y = g$F2), aes(x = x, y = y, color="110"))+
+   geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="118"))+
+ geom_point(data = data.frame(x = h$G2, y = g$G2), aes(x = x, y = y, color="118"))+
+  labs(title="All OVL",
+        x ="Optical Density", y = "Luminescence (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("All OVL.png")
+```  
+```{r tac Lum/OD}
+p1 <- ggplot(i, aes(x=Hours)) + 
+   geom_line(aes(y = A1, color="tac"),linewidth=1) +
+  geom_line(aes(y = A2, color="tac"),linewidth=1) +
+  geom_line(aes(y = B1, color="102"),linewidth=1) +
+  geom_line(aes(y = B2, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = C2, color="104"),linewidth=1) +
+  geom_line(aes(y = D1, color="108"),linewidth=1) +
+  geom_line(aes(y = D2, color="108"),linewidth=1) +
+  geom_line(aes(y = E1, color="115"),linewidth=1) +
+  geom_line(aes(y = E2, color="115"),linewidth=1) +
+  geom_line(aes(y = F1, color="110"),linewidth=1) +
+  geom_line(aes(y = F2, color="110"),linewidth=1) +
+  geom_line(aes(y = G1, color="118"),linewidth=1) +
+  geom_line(aes(y = G2, color="118"),linewidth=1) +
+   labs(title="All Lum/OD",
+        x ="Time (hours)", y = "Lum/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("All LumOD.png")
+```

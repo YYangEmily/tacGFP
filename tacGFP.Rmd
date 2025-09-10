@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(dplyr)
 library(readxl)
-library(reshape2)
 library(ggplot2)
 
 g <- read_excel("~/Documents/Experiments/8.22.25 tacGFPEcoli.xlsx", 
