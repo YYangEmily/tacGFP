@@ -1,0 +1,132 @@
+---
+title: "Bizio"
+author: "Emily Yang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+g <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "Lum")
+h <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "OD")
+i <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "Lum OD")
+
+```
+
+```{r 102 Lum}
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
+
+p1 <- ggplot(g, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  geom_line(aes(y = E1, color="102"),linewidth=1)+
+  geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+   labs(title="Promoters 102-115 Lum",
+        x ="Time (hours)", y = "Luminescence (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("102 Lum.png")
+
+
+p1 <- ggplot(h, aes(x=Hours)) + 
+ geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  geom_line(aes(y = E1, color="102"),linewidth=1)+
+  geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  scale_y_log10()+
+   labs(title="Promoters 102-115 OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("102 OD.png")
+```
+
+```{r 102 OVL}
+
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="102"))+
+ geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="104"))+
+ geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = h$G3, y = g$G3), aes(x = x, y = y, color="104"))+ 
+  geom_point(data = data.frame(x = h$A5, y = g$A5), aes(x = x, y = y, color="108"))+
+ geom_point(data = data.frame(x = h$C5, y = g$C5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$E5, y = g$E5), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = h$G5, y = g$G5), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="115"))+
+ geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+
+   geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
+labs(title="Promoters 102-115 OVL",
+        x ="Optical Density", y = "Luminescence (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("102 OVL.png")
+
+```
+
+```{r 102 Lum/OD}
+p1 <- ggplot(i, aes(x=Hours)) + 
+ geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  #geom_line(aes(y = E1, color="102"),linewidth=1)+
+  #geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = E3, color="104"),linewidth=1)+
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = E5, color="108"),linewidth=1)+
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+  geom_line(aes(y = E7, color="115"),linewidth=1)+
+   labs(title="Promoters 102-115 Lum/OD",
+        x ="Time (hours)", y = "Lum/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("102 LumOD.png")
+```
