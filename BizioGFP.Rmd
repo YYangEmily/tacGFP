@@ -18,10 +18,16 @@ h <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx",
     sheet = "OD")
 i <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
     sheet = "Lum OD")
+m <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "Avg Lum")
+n <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "Avg OD")
+o <- read_excel("~/Documents/Experiments/9.16.25 BizioGFP.xlsx", 
+    sheet = "Avg LO")
 
 ```
 
-```{r 102 Lum}
+```{r 102 GFP}
 colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
 
 p1 <- ggplot(g, aes(x=Hours)) + 
@@ -41,12 +47,13 @@ p1 <- ggplot(g, aes(x=Hours)) +
   geom_line(aes(y = C7, color="115"),linewidth=1) +
   geom_line(aes(y = E7, color="115"),linewidth=1)+
   geom_line(aes(y = E7, color="115"),linewidth=1)+
-   labs(title="Promoters 102-115 Lum",
-        x ="Time (hours)", y = "Luminescence (AU)",
+  xlim(2,18)+
+   labs(title="Smar Bizio 102-115 GFP",
+        x ="Time (hours)", y = "GFP (AU)",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("102 Lum.png")
+#ggsave("Bizio GFP.png")
 
 
 p1 <- ggplot(h, aes(x=Hours)) + 
@@ -66,13 +73,14 @@ p1 <- ggplot(h, aes(x=Hours)) +
   geom_line(aes(y = C7, color="115"),linewidth=1) +
   geom_line(aes(y = E7, color="115"),linewidth=1)+
   geom_line(aes(y = E7, color="115"),linewidth=1)+
+  xlim(2,18)+
   scale_y_log10()+
-   labs(title="Promoters 102-115 OD",
+   labs(title="Smar Bizio 102-115 OD",
         x ="Time (hours)", y = "Log OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("102 OD.png")
+#ggsave("Bizio OD.png")
 ```
 
 ```{r 102 OVL}
@@ -96,21 +104,21 @@ r<- ggplot()+
  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
   geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+
    geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
-labs(title="Promoters 102-115 OVL",
-        x ="Optical Density", y = "Luminescence (AU)", color = "Legend") +
+labs(title="Smar Bizio 102-115 OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
     scale_color_manual(values = colors)
 r
 
-#ggsave("102 OVL.png")
+#ggsave("Bizio OVL.png")
 
 ```
 
-```{r 102 Lum/OD}
+```{r 102 GFP/OD}
 p1 <- ggplot(i, aes(x=Hours)) + 
  geom_line(aes(y = A1, color="102"),linewidth=1) +
   geom_line(aes(y = C1, color="102"),linewidth=1) +
-  #geom_line(aes(y = E1, color="102"),linewidth=1)+
-  #geom_line(aes(y = G1, color="102"),linewidth=1)+
+  geom_line(aes(y = E1, color="102"),linewidth=1)+
+  geom_line(aes(y = G1, color="102"),linewidth=1)+
   geom_line(aes(y = A3, color="104"),linewidth=1) +
   geom_line(aes(y = C3, color="104"),linewidth=1) +
   geom_line(aes(y = E3, color="104"),linewidth=1)+
@@ -123,10 +131,75 @@ p1 <- ggplot(i, aes(x=Hours)) +
   geom_line(aes(y = C7, color="115"),linewidth=1) +
   geom_line(aes(y = E7, color="115"),linewidth=1)+
   geom_line(aes(y = E7, color="115"),linewidth=1)+
-   labs(title="Promoters 102-115 Lum/OD",
-        x ="Time (hours)", y = "Lum/OD",
+  xlim(2,18)+
+   labs(title="Smar Bizio 102-115 GFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("102 LumOD.png")
+#ggsave("Bizio GFPOD.png")
+```
+
+```{r Avg GFP}
+
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+p1 <- ggplot(m, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1)+
+  geom_line(aes(y = D1, color="115"),linewidth=1)+
+    xlim(2,18)+
+   labs(title="Avg Bizio GFP",
+        x ="Time (hours)", y = "GFP (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("Avg Bizio GFP.png")
+
+p1 <- ggplot(n, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1) +
+  geom_line(aes(y = D1, color="115"),linewidth=1) +
+    xlim(2,18)+
+  scale_y_log10()+
+   labs(title="Avg Bizio OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("Avg Bizio OD.png")
+```
+
+```{r Avg OVL}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = n$A1, y = m$A1), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = n$B1, y = m$B1), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = n$C1, y = m$C1), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = n$D1, y = m$D1), aes(x = x, y = y, color="115"))+
+  labs(title="Avg Bizo OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("Avg Bizio  OVL.png")
+```  
+
+```{r Avg GFP/OD}
+p1 <- ggplot(o, aes(x=Hours)) + 
+   geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1) +
+  geom_line(aes(y = D1, color="115"),linewidth=1) +
+    xlim(2,18)+
+   labs(title="Avg Bizio GFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+
+#ggsave("Avg Bizio GFPOD.png")
 ```
