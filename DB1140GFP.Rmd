@@ -7,24 +7,198 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+g <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "Lum")
+h <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "OD")
+i <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "Lum OD")
+m <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "Avg Lum")
+n <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "Avg OD")
+o <- read_excel("~/Documents/Experiments/9.18.25 DB1140.xlsx", 
+    sheet = "Avg LO")
+
 ```
 
-## R Markdown
+```{r 102 GFP}
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+p1 <- ggplot(g, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = E1, color="104"),linewidth=1)+
+  geom_line(aes(y = G1, color="104"),linewidth=1)+
+  geom_line(aes(y = A3, color="108"),linewidth=1) +
+  geom_line(aes(y = C3, color="108"),linewidth=1) +
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = A5, color="115"),linewidth=1) +
+  geom_line(aes(y = C5, color="115"),linewidth=1) +
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  xlim(2,18)+
+   labs(title="Smar DB1140 104-115 GFP",
+        x ="Time (hours)", y = "GFP (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("DB1140 GFP.png")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+p1 <- ggplot(h, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = E1, color="104"),linewidth=1)+
+  geom_line(aes(y = G1, color="104"),linewidth=1)+
+  geom_line(aes(y = A3, color="108"),linewidth=1) +
+  geom_line(aes(y = C3, color="108"),linewidth=1) +
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = A5, color="115"),linewidth=1) +
+  geom_line(aes(y = C5, color="115"),linewidth=1) +
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  xlim(2,18)+
+  scale_y_log10()+
+   labs(title="Smar DB1140 104-115 GFP",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("DB1140 OD.png")
+```
+```{r 102 OVL}
+
+colors <- c("102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$G3, y = g$G3), aes(x = x, y = y, color="108"))+ 
+  geom_point(data = data.frame(x = h$A5, y = g$A5), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$C5, y = g$C5), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$E5, y = g$E5), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$G5, y = g$G5), aes(x = x, y = y, color="115"))+
+labs(title="Smar DB1140 102-115 OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("DB1140 OVL.png")
+
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r 102 GFP/OD}
+p1 <- ggplot(i, aes(x=Hours)) + 
+geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="104"),linewidth=1) +
+  geom_line(aes(y = E1, color="104"),linewidth=1)+
+  geom_line(aes(y = G1, color="104"),linewidth=1)+
+  geom_line(aes(y = A3, color="108"),linewidth=1) +
+  geom_line(aes(y = C3, color="108"),linewidth=1) +
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = E3, color="108"),linewidth=1)+
+  geom_line(aes(y = A5, color="115"),linewidth=1) +
+  geom_line(aes(y = C5, color="115"),linewidth=1) +
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  geom_line(aes(y = E5, color="115"),linewidth=1)+
+  xlim(2,18)+
+   labs(title="Smar DB1140 102-115 GFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("DB1140 GFPOD.png")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r Avg GFP}
+
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+p1 <- ggplot(m, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = B1, color="108"),linewidth=1) +
+  geom_line(aes(y = C1, color="115"),linewidth=1) +
+    xlim(2,18)+
+   labs(title="Avg DB1140 GFP",
+        x ="Time (hours)", y = "GFP (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("Avg DB1140 GFP.png")
+
+p1 <- ggplot(n, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = B1, color="108"),linewidth=1) +
+  geom_line(aes(y = C1, color="115"),linewidth=1) +
+    xlim(2,18)+
+  scale_y_log10()+
+   labs(title="Avg DB1140 OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("Avg DB1140 OD.png")
+```
+
+```{r Avg OVL}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = n$A1, y = m$A1), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = n$B1, y = m$B1), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = n$C1, y = m$C1), aes(x = x, y = y, color="115"))+
+  labs(title="Avg Bizo OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("Avg DB1140  OVL.png")
+```  
+
+```{r Avg GFP/OD}
+p1 <- ggplot(o, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="104"),linewidth=1) +
+  geom_line(aes(y = B1, color="108"),linewidth=1) +
+  geom_line(aes(y = C1, color="115"),linewidth=1) +
+    xlim(2,18)+
+    ylim(-100000,1500000)
+   labs(title="Avg DB1140 GFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+
+#ggsave("Avg DB1140 GFPOD.png")
+```
+
+```{r}
+ggplotRegression <- function (fit) {
+
+require(ggplot2)
+
+ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) + 
+  geom_point() +
+  stat_smooth(method = "lm", col = "red") +
+  labs(title = paste("Adj R2 = ",signif(summary(fit)$adj.r.squared, 5),
+                     "Intercept =",signif(fit$coef[[1]],5 ),
+                     " Slope =",signif(fit$coef[[2]], 5),
+                     " P =",signif(summary(fit)$coef[2,4], 5)))
+}
+
+ggplotRegression(lm( A1 ~ Hours, data = m))
+ggplotRegression(lm( B1 ~ Hours, data = m))
+ggplotRegression(lm( C1 ~ Hours, data = m))
+```
