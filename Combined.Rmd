@@ -226,12 +226,12 @@ ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) 
                      " P =",signif(summary(fit)$coef[2,4], 5)))
 }
 
-ggplotRegression(lm( A1 ~ Hours, data = m))
-ggplotRegression(lm( B1 ~ Hours, data = m))
-ggplotRegression(lm( C1 ~ Hours, data = m))
-ggplotRegression(lm( D1 ~ Hours, data = m))
-ggplotRegression(lm( E1 ~ Hours, data = m))
-ggplotRegression(lm( F1 ~ Hours, data = m))
-ggplotRegression(lm( G1 ~ Hours, data = m))
+ggplotRegression(lm( A1 ~ Hours, data = m, subset=(Hours>2 & Hours<17)))
+ggplotRegression(lm( B1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( C1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( D1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( E1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( F1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( G1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
 
 ```
