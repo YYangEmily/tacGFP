@@ -169,12 +169,13 @@ r
 ```  
 
 ```{r Avg GFP/OD}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 p1 <- ggplot(o, aes(x=Hours)) + 
   geom_line(aes(y = A1, color="104"),linewidth=1) +
   geom_line(aes(y = B1, color="108"),linewidth=1) +
   geom_line(aes(y = C1, color="115"),linewidth=1) +
     xlim(2,18)+
-    ylim(-100000,1500000)
+    ylim(-100000,1000000)+
    labs(title="Avg DB1140 GFP/OD",
         x ="Time (hours)", y = "GFP/OD",
          color = "Legend") +
@@ -191,7 +192,7 @@ require(ggplot2)
 
 ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) + 
   geom_point() +
-  stat_smooth(method = "lm", col = "red") +
+  stat_smooth(method = "lm", col = "red", se=FALSE) +
   labs(title = paste("R2 = ",signif(summary(fit)$r.squared, 5),
                      "Intercept =",signif(fit$coef[[1]],5 ),
                      " Slope =",signif(fit$coef[[2]], 5),
@@ -205,4 +206,5 @@ ggplotRegression(lm( C1 ~ Hours, data = m))
 ggplotRegression(lm( A1 ~ Hours, data = n))
 ggplotRegression(lm( B1 ~ Hours, data = n))
 ggplotRegression(lm( C1 ~ Hours, data = n))
+
 ```

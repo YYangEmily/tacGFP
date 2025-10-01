@@ -104,6 +104,7 @@ r<- ggplot()+
  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
   geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+
    geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
+  xlim(0,1)+ylim(0,400000)+
 labs(title="Smar Bizio 102-115 OVL",
         x ="Optical Density", y = "GFP (AU)", color = "Legend") +
     scale_color_manual(values = colors)

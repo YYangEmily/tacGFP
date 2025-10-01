@@ -105,35 +105,41 @@ p1
 colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 
 r<- ggplot()+ 
-geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="102"))+
-geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="102"))+
-geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="102"))+
-geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="102"))+  geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="104"))+
-geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="104"))+
-geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="104"))+
-geom_point(data = data.frame(x = h$G3, y = g$G3), aes(x = x, y = y, color="104"))+
-geom_point(data = data.frame(x = h$A5, y = g$A5), aes(x = x, y = y, color="108"))+
-geom_point(data = data.frame(x = h$C5, y = g$C5), aes(x = x, y = y, color="108"))+
-geom_point(data = data.frame(x = h$E5, y = g$E5), aes(x = x, y = y, color="108"))+
-geom_point(data = data.frame(x = h$G5, y = g$G5), aes(x = x, y = y, color="108"))+
-geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="115"))+ geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
-geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+ 
-geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
-geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="118"))+ geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="118"))+
-geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="118"))+ 
-geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="118"))+
-geom_point(data = data.frame(x = h$A12, y = g$A12), aes(x = x, y = y, color="tac"))+ geom_point(data = data.frame(x = h$C12, y = g$C12), aes(x = x, y = y, color="tac"))+ geom_point(data = data.frame(x = h$E12, y = g$E12), aes(x = x, y = y, color="tac"))+
- geom_point(data = data.frame(x = h$G12, y = g$G12), aes(x = x, y = y, color="tac"))+
-  labs(title="All DbOVL",
+  geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="102"))+  
+  geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$G3, y = g$G3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$A5, y = g$A5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$C5, y = g$C5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$E5, y = g$E5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$G5, y = g$G5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="115"))+ 
+  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+ 
+  geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="118"))+ 
+  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="118"))+
+  geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="118"))+ 
+  geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="118"))+
+  geom_point(data = data.frame(x = h$A12, y = g$A12), aes(x = x, y = y, color="tac"))+ 
+  geom_point(data = data.frame(x = h$C12, y = g$C12), aes(x = x, y = y, color="tac"))+ 
+  geom_point(data = data.frame(x = h$E12, y = g$E12), aes(x = x, y = y, color="tac"))+
+  geom_point(data = data.frame(x = h$G12, y = g$G12), aes(x = x, y = y, color="tac"))+
+  labs(title="All OVL",
         x ="Optical Density", y = "GFP (AU)", color = "Legend") +
     scale_color_manual(values = colors)
 r
 
-#ggsave("All OVL.png")
+#ggsave("All DbOVL.png")
 ```  
 ```{r GFP/OD}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 p1 <- ggplot(i, aes(x=Hours)) + 
-   geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
   geom_line(aes(y = C1, color="102"),linewidth=1) +
   geom_line(aes(y = E1, color="102"),linewidth=1) +
   geom_line(aes(y = G1, color="102"),linewidth=1) +
@@ -157,17 +163,17 @@ p1 <- ggplot(i, aes(x=Hours)) +
   geom_line(aes(y = C12, color="tac"),linewidth=1) +
   geom_line(aes(y = E12, color="tac"),linewidth=1) +
   geom_line(aes(y = G12, color="tac"),linewidth=1) +
-  xlim(2,18)+
+  xlim(0,17)+
   ylim(0,400000)+
    labs(title="All DbGFP/OD",
         x ="Time (hours)", y = "GFP/OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("All GFPOD.png")
+#ggsave("All DbGFPOD.png")
 ```
 
-``{r Avg GFP}
+```{r Avg GFP}
 
 colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 
@@ -178,13 +184,13 @@ p1 <- ggplot(m, aes(x=Hours)) +
   geom_line(aes(y = D1, color="115"),linewidth=1) +
   geom_line(aes(y = E1, color="118"),linewidth=1) +
   geom_line(aes(y = F1, color="tac"),linewidth=1) +
-    xlim(2,18)+
+
    labs(title="Avg All GFP",
         x ="Time (hours)", y = "GFP (AU)",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("Avg GFP.png")
+#ggsave("Avg dbGFP.png")
 
 p1 <- ggplot(n, aes(x=Hours)) + 
   geom_line(aes(y = A1, color="102"),linewidth=1) +
@@ -193,43 +199,34 @@ p1 <- ggplot(n, aes(x=Hours)) +
   geom_line(aes(y = D1, color="115"),linewidth=1) +
   geom_line(aes(y = E1, color="118"),linewidth=1) +
   geom_line(aes(y = F1, color="tac"),linewidth=1) +
-    xlim(2,18)+
   scale_y_log10()+
    labs(title="Avg All OD",
         x ="Time (hours)", y = "Log OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("Avg OD.png")
+#ggsave("Avg dbOD.png")
 ```
 
-``{r Avg OVL}
+```{r Avg OVL}
 colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 
 r<- ggplot()+ 
-  geom_point(data = data.frame(x = n$A1, y = m$A1), aes(x = x, y = y, color="tac"))+
- #geom_point(data = data.frame(x = n$A2, y = m$A2), aes(x = x, y = y, color="tac"))+
-   geom_point(data = data.frame(x = n$B1, y = m$B1), aes(x = x, y = y, color="102"))+
- #geom_point(data = data.frame(x = n$B2, y = m$B2), aes(x = x, y = y, color="102"))+
-   geom_point(data = data.frame(x = n$C1, y = m$C1), aes(x = x, y = y, color="104"))+
- #geom_point(data = data.frame(x = n$C2, y = m$C2), aes(x = x, y = y, color="104"))+
-   geom_point(data = data.frame(x = n$D1, y = m$D1), aes(x = x, y = y, color="108"))+
- #geom_point(data = data.frame(x = n$D2, y = m$D2), aes(x = x, y = y, color="108"))+
-  geom_point(data = data.frame(x = n$E1, y = m$E1), aes(x = x, y = y, color="115"))+
- #geom_point(data = data.frame(x = n$E2, y = m$E2), aes(x = x, y = y, color="115"))+
-   geom_point(data = data.frame(x = n$F1, y = m$F1), aes(x = x, y = y, color="110"))+
- #geom_point(data = data.frame(x = n$F2, y = m$F2), aes(x = x, y = y, color="110"))+
-   geom_point(data = data.frame(x = n$G1, y = m$G1), aes(x = x, y = y, color="118"))+
- #geom_point(data = data.frame(x = n$G2, y = m$G2), aes(x = x, y = y, color="118"))+
+  geom_point(data = data.frame(x = n$A1, y = m$A1), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = n$B1, y = m$B1), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = n$C1, y = m$C1), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = n$D1, y = m$D1), aes(x = x, y = y, color="115"))+
+   geom_point(data = data.frame(x = n$E1, y = m$E1), aes(x = x, y = y, color="118"))+
+   geom_point(data = data.frame(x = n$F1, y = m$F1), aes(x = x, y = y, color="tac"))+
   labs(title="Avg All OVL",
         x ="Optical Density", y = "GFP (AU)", color = "Legend") +
     scale_color_manual(values = colors)
 r
 
-#ggsave("Avg OVL.png")
+#ggsave("Avg dbOVL.png")
 ```  
 
-``{r Avg GFP/OD}
+```{r Avg GFP/OD}
 p1 <- ggplot(o, aes(x=Hours)) + 
  geom_line(aes(y = A1, color="102"),linewidth=1) +
   geom_line(aes(y = B1, color="104"),linewidth=1) +
@@ -237,14 +234,12 @@ p1 <- ggplot(o, aes(x=Hours)) +
   geom_line(aes(y = D1, color="115"),linewidth=1) +
   geom_line(aes(y = E1, color="118"),linewidth=1) +
   geom_line(aes(y = F1, color="tac"),linewidth=1) +
-    xlim(2,18)+
-    xlim(2,18)+
    labs(title="Avg All GFP/OD",
         x ="Time (hours)", y = "GFP/OD",
          color = "Legend") +
     scale_color_manual(values = colors)
 p1
-#ggsave("Avg GFPOD.png")
+#ggsave("Avg dbGFPOD.png")
 ```
 
 ```{r}
@@ -255,19 +250,24 @@ require(ggplot2)
 
 ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) + 
   geom_point() +
-  stat_smooth(method = "lm", col = "red") +
+  stat_smooth(method = "lm", col = "red", se=FALSE) +
   labs(title = paste("R2 = ",signif(summary(fit)$r.squared, 5),
                      "Intercept =",signif(fit$coef[[1]],5 ),
                      " Slope =",signif(fit$coef[[2]], 5),
                      " P =",signif(summary(fit)$coef[2,4], 5)))
 }
 
-ggplotRegression(lm( A1 ~ Hours, data = m, subset=(Hours>2 & Hours<17)))
-ggplotRegression(lm( B1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
-ggplotRegression(lm( C1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
-ggplotRegression(lm( D1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
-ggplotRegression(lm( E1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
-ggplotRegression(lm( F1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
-ggplotRegression(lm( G1 ~ Hours, data = m, subset=(Hours>2 & Hours<18)))
+ggplotRegression(lm( A1 ~ Hours, data = m))
+ggplotRegression(lm( B1 ~ Hours, data = m))
+ggplotRegression(lm( C1 ~ Hours, data = m))
+ggplotRegression(lm( D1 ~ Hours, data = m))
+ggplotRegression(lm( E1 ~ Hours, data = m))
+ggplotRegression(lm( F1 ~ Hours, data = m))
 
+ggplotRegression(lm( A1 ~ Hours, data = n))
+ggplotRegression(lm( B1 ~ Hours, data = n))
+ggplotRegression(lm( C1 ~ Hours, data = n))
+ggplotRegression(lm( D1 ~ Hours, data = n))
+ggplotRegression(lm( E1 ~ Hours, data = n))
+ggplotRegression(lm( F1 ~ Hours, data = n))
 ```
