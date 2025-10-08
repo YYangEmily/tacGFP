@@ -7,24 +7,251 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+g <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "Lum")
+h <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "OD")
+i <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "Lum OD")
+m <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "Avg Lum")
+n <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "Avg OD")
+o <- read_excel("~/Documents/Experiments/9.30.25 DB1140.xlsx", 
+    sheet = "Avg LO")
+
 ```
 
-## R Markdown
+```{r GFP}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+p1 <- ggplot(g, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  geom_line(aes(y = E1, color="102"),linewidth=1) +
+  geom_line(aes(y = G1, color="102"),linewidth=1) +
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1) +
+  geom_line(aes(y = G3, color="104"),linewidth=1) +
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1) +
+  geom_line(aes(y = G5, color="108"),linewidth=1) +
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1) +
+  geom_line(aes(y = G7, color="115"),linewidth=1) +
+  geom_line(aes(y = A9, color="118"),linewidth=1) +
+  geom_line(aes(y = C9, color="118"),linewidth=1) +
+  geom_line(aes(y = E9, color="118"),linewidth=1) +
+  geom_line(aes(y = G9, color="118"),linewidth=1) +
+  geom_line(aes(y = A12, color="tac"),linewidth=1) +
+  geom_line(aes(y = C12, color="tac"),linewidth=1) +
+  geom_line(aes(y = E12, color="tac"),linewidth=1) +
+  geom_line(aes(y = G12, color="tac"),linewidth=1) +
+  geom_line(aes(y = H2, color="110"),linewidth=1) +
+  geom_line(aes(y = H4, color="110"),linewidth=1) +
+  geom_line(aes(y = H6, color="110"),linewidth=1) +
+  geom_line(aes(y = H8, color="110"),linewidth=1) +
+   labs(title=" All GFP",
+        x ="Time (hours)", y = "GFP (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
 
-```{r cars}
-summary(cars)
+#ggsave("Lum3.png")
+
+p1 <- ggplot(h, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  geom_line(aes(y = E1, color="102"),linewidth=1) +
+  geom_line(aes(y = G1, color="102"),linewidth=1) +
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1) +
+  geom_line(aes(y = G3, color="104"),linewidth=1) +
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1) +
+  geom_line(aes(y = G5, color="108"),linewidth=1) +
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1) +
+  geom_line(aes(y = G7, color="115"),linewidth=1) +
+  geom_line(aes(y = A9, color="118"),linewidth=1) +
+  geom_line(aes(y = C9, color="118"),linewidth=1) +
+  geom_line(aes(y = E9, color="118"),linewidth=1) +
+  geom_line(aes(y = G9, color="118"),linewidth=1) +
+  geom_line(aes(y = A12, color="tac"),linewidth=1) +
+  geom_line(aes(y = C12, color="tac"),linewidth=1) +
+  geom_line(aes(y = E12, color="tac"),linewidth=1) +
+  geom_line(aes(y = G12, color="tac"),linewidth=1) +
+  geom_line(aes(y = H2, color="110"),linewidth=1) +
+  geom_line(aes(y = H4, color="110"),linewidth=1) +
+  geom_line(aes(y = H6, color="110"),linewidth=1) +
+  geom_line(aes(y = H8, color="110"),linewidth=1) +
+  scale_y_log10()+
+   labs(title="All OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("OD3.png")
 ```
 
-## Including Plots
+```{r OVL}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
 
-You can also embed plots, for example:
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = h$A1, y = g$A1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$C1, y = g$C1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$E1, y = g$E1), aes(x = x, y = y, color="102"))+
+  geom_point(data = data.frame(x = h$G1, y = g$G1), aes(x = x, y = y, color="102"))+  
+  geom_point(data = data.frame(x = h$A3, y = g$A3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$C3, y = g$C3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$E3, y = g$E3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$G3, y = g$G3), aes(x = x, y = y, color="104"))+
+  geom_point(data = data.frame(x = h$A5, y = g$A5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$C5, y = g$C5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$E5, y = g$E5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$G5, y = g$G5), aes(x = x, y = y, color="108"))+
+  geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="115"))+ 
+  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="115"))+ 
+  geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="115"))+
+  geom_point(data = data.frame(x = h$A7, y = g$A7), aes(x = x, y = y, color="118"))+ 
+  geom_point(data = data.frame(x = h$C7, y = g$C7), aes(x = x, y = y, color="118"))+
+  geom_point(data = data.frame(x = h$E7, y = g$E7), aes(x = x, y = y, color="118"))+ 
+  geom_point(data = data.frame(x = h$G7, y = g$G7), aes(x = x, y = y, color="118"))+
+  geom_point(data = data.frame(x = h$A12, y = g$A12), aes(x = x, y = y, color="tac"))+ 
+  geom_point(data = data.frame(x = h$C12, y = g$C12), aes(x = x, y = y, color="tac"))+ 
+  geom_point(data = data.frame(x = h$E12, y = g$E12), aes(x = x, y = y, color="tac"))+
+  geom_point(data = data.frame(x = h$G12, y = g$G12), aes(x = x, y = y, color="tac"))+
+  geom_point(data = data.frame(x = h$H2, y = g$H2), aes(x = x, y = y, color="110"))+ 
+  geom_point(data = data.frame(x = h$H4, y = g$H4), aes(x = x, y = y, color="110"))+ 
+  geom_point(data = data.frame(x = h$H6, y = g$H6), aes(x = x, y = y, color="110"))+
+  geom_point(data = data.frame(x = h$H8, y = g$H8), aes(x = x, y = y, color="110"))+
+  labs(title="All OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+#ggsave("OVL3.png")
+```  
+
+```{r GFP/OD}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+p1 <- ggplot(i, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = C1, color="102"),linewidth=1) +
+  geom_line(aes(y = E1, color="102"),linewidth=1) +
+  geom_line(aes(y = G1, color="102"),linewidth=1) +
+  geom_line(aes(y = A3, color="104"),linewidth=1) +
+  geom_line(aes(y = C3, color="104"),linewidth=1) +
+  geom_line(aes(y = E3, color="104"),linewidth=1) +
+  geom_line(aes(y = G3, color="104"),linewidth=1) +
+  geom_line(aes(y = A5, color="108"),linewidth=1) +
+  geom_line(aes(y = C5, color="108"),linewidth=1) +
+  geom_line(aes(y = E5, color="108"),linewidth=1) +
+  geom_line(aes(y = G5, color="108"),linewidth=1) +
+  geom_line(aes(y = A7, color="115"),linewidth=1) +
+  geom_line(aes(y = C7, color="115"),linewidth=1) +
+  geom_line(aes(y = E7, color="115"),linewidth=1) +
+  geom_line(aes(y = G7, color="115"),linewidth=1) +
+  geom_line(aes(y = A9, color="118"),linewidth=1) +
+  geom_line(aes(y = C9, color="118"),linewidth=1) +
+  geom_line(aes(y = E9, color="118"),linewidth=1) +
+  geom_line(aes(y = G9, color="118"),linewidth=1) +
+  geom_line(aes(y = A12, color="tac"),linewidth=1) +
+  geom_line(aes(y = C12, color="tac"),linewidth=1) +
+  geom_line(aes(y = E12, color="tac"),linewidth=1) +
+  geom_line(aes(y = G12, color="tac"),linewidth=1) +
+  geom_line(aes(y = H2, color="110"),linewidth=1) +
+  geom_line(aes(y = H4, color="110"),linewidth=1) +
+  geom_line(aes(y = H6, color="110"),linewidth=1) +
+  geom_line(aes(y = H8, color="110"),linewidth=1) +
+   labs(title="All DbGFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("LO3.png")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r Avg GFP}
+
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+p1 <- ggplot(m, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1) +
+  geom_line(aes(y = D1, color="115"),linewidth=1) +
+  geom_line(aes(y = E1, color="118"),linewidth=1) +
+  geom_line(aes(y = F1, color="tac"),linewidth=1) +
+  geom_line(aes(y = G1, color="110"),linewidth=1) +
+   labs(title="Avg All GFP",
+        x ="Time (hours)", y = "GFP (AU)",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("AL3.png")
+
+p1 <- ggplot(n, aes(x=Hours)) + 
+  geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1) +
+  geom_line(aes(y = D1, color="115"),linewidth=1) +
+  geom_line(aes(y = E1, color="118"),linewidth=1) +
+  geom_line(aes(y = F1, color="tac"),linewidth=1) +
+  geom_line(aes(y = G1, color="110"),linewidth=1) +
+  scale_y_log10()+
+   labs(title="Avg All OD",
+        x ="Time (hours)", y = "Log OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("AO3.png")
+```
+
+```{r Avg OVL}
+colors <- c("tac" = "seagreen","102" = "pink", "104" = "orange", "108" = "lightblue", "115" = "purple", "110" = "cyan", "118" ="salmon")
+
+r<- ggplot()+ 
+  geom_point(data = data.frame(x = n$A1, y = m$A1), aes(x = x, y = y, color="102"))+
+   geom_point(data = data.frame(x = n$B1, y = m$B1), aes(x = x, y = y, color="104"))+
+   geom_point(data = data.frame(x = n$C1, y = m$C1), aes(x = x, y = y, color="108"))+
+   geom_point(data = data.frame(x = n$D1, y = m$D1), aes(x = x, y = y, color="115"))+
+   geom_point(data = data.frame(x = n$E1, y = m$E1), aes(x = x, y = y, color="118"))+
+   geom_point(data = data.frame(x = n$F1, y = m$F1), aes(x = x, y = y, color="tac"))+
+  geom_point(data = data.frame(x = n$G1, y = m$G1), aes(x = x, y = y, color="110"))+
+  labs(title="Avg All OVL",
+        x ="Optical Density", y = "GFP (AU)", color = "Legend") +
+    scale_color_manual(values = colors)
+r
+
+#ggsave("AOVL3.png")
+```  
+```{r Avg GFP/OD}
+p1 <- ggplot(o, aes(x=Hours)) + 
+ geom_line(aes(y = A1, color="102"),linewidth=1) +
+  geom_line(aes(y = B1, color="104"),linewidth=1) +
+  geom_line(aes(y = C1, color="108"),linewidth=1) +
+  geom_line(aes(y = D1, color="115"),linewidth=1) +
+  geom_line(aes(y = E1, color="118"),linewidth=1) +
+  geom_line(aes(y = F1, color="tac"),linewidth=1) +
+  geom_line(aes(y = G1, color="110"),linewidth=1) +
+   labs(title="Avg All GFP/OD",
+        x ="Time (hours)", y = "GFP/OD",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+p1
+#ggsave("ALO3.png")
+```
